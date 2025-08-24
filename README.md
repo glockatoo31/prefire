@@ -88,7 +88,7 @@ A shortcut will be made on your desktop
 ### 5. Enable Background Automation and Notifications (Windows)
 
 1.  Open the GUI via the desktop shortcut.
-2.  
+2.  Enter your pushover API and account key.
 3.  Open the **Background Automation** panel on the right.
 4. Choose a **Frequency (min)** and press **Enable** – Prefire creates/updates the
    *SentinelJobChecker* task pointing to `sentinel.py`.
@@ -109,4 +109,48 @@ A shortcut will be made on your desktop
 
 ---
 
-*Happy pre-firing!* 🔥
+## 🏢 Adding companies to watch
+
+1. **Open the GUI** (`watchers_gui.py`) and focus the **Add / Update** panel on the right.
+2. Paste a public job‑board URL (e.g. `https://boards.greenhouse.io/example`) and hit **Auto Detect** – the form auto‑fills the required fields.
+3. Tweak the friendly *Company* name if you like, then press **Add / Update**.
+
+### Manually filling the form
+If you prefer manual entry, choose the **ATS** from the drop‑down and fill only the fields that light up:
+
+| ATS | Required fields |
+|-----|-----------------|
+| Greenhouse | **slug** (everything after `boards.greenhouse.io/`) |
+| Lever | **slug** (after `jobs.lever.co/`) |
+| AshbyHQ | **slug** (second part of the URL) |
+| Workday | **tenant**, **cluster**, **site**, **locale** |
+| Workday Intercept | **tenant**, **cluster**, **site**, **locale** |
+
+Click **Add / Update** to start watching.
+
+#### How to get Workday fields (tenant, cluster, site, locale)
+
+For **Workday** and **Workday Intercept**, you need:
+- **tenant**: The subdomain before the first dot in the URL
+- **cluster**: The next part after the subdomain (e.g., `myworkdayjobs.com/` is usually after `cluster`)
+- **site**: Usually `External`, or the last part of the path in the URL
+- **locale**: Usually `en-US` (default)
+
+**Example:**
+- Job board: `https://company.wd5.myworkdayjobs.com/External`
+  - **tenant**: `company`
+  - **cluster**: `wd5`
+  - **site**: `External`
+  - **locale**: `en-US`
+
+If the URL is more complex, Prefire's **Auto Detect** can usually figure it out for you—just paste the full job board URL and hit Auto Detect.
+
+If you ever get stuck, check the page's URL or ask the person who runs the job board for help. Most public boards follow the same pattern.
+
+### Workday vs. Workday Intercept
+| Mode | What it does | When to use |
+|------|--------------|-------------|
+| **Workday** | Uses the public JSON/atom feed offered by many Workday career sites. Fast & light, but some companies disable this endpoint. | Works on most Workday boards – always try this first. |
+| **Workday Intercept** | Launches a headless Chromium instance (via Playwright) and **captures XHR calls** while the page loads, pulling job data even when the JSON feed is blocked. Slightly slower and needs the Playwright browser download. | Use only if **Workday** returns 0 roles or errors out – this mode is your fallback. |
+
+You can switch between the two at any time; Prefire will quietly refresh the list on the next run.
