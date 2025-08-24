@@ -45,28 +45,7 @@ python watchers_gui.py
 
 ## 🛠️ Full setup (step-by-step)
 
-### 1. Clone & create a virtual-env   *(skip if you ran the quick-start)*
-
-```bash
-git clone https://github.com/glockatoo31/prefire.git
-cd prefire
-
-python -m venv venv
-#  ➟ Windows PowerShell
-.\venv\Scripts\Activate
-#  ➟ macOS / Linux
-source venv/bin/activate
-```
-
-### 2. Install dependencies
-
-```bash
-pip install -r requirements.txt
-# Playwright needs its own browser download:
-playwright install
-```
-
-### 3. Configure **Pushover** for phone alerts
+### 1. Configure **Pushover** for phone alerts
 
 1. Create a free account at [https://pushover.net](https://pushover.net)
 
@@ -79,7 +58,7 @@ playwright install
    * Click **Create Application** → copy the **API Token**
 
 
-### 4. Create a shortcut to the GUI
+### 2. Create a shortcut to the GUI
 
 Right clovk **make_shortcut.ps1** > Run with powershell
 
@@ -93,9 +72,6 @@ A shortcut will be made on your desktop
 4. Choose a **Frequency (min)** and press **Enable** – Prefire creates/updates the
    *SentinelJobChecker* task pointing to `sentinel.py`.
 5. The panel shows **Status**, **Next run** and a live **Countdown**.
-
----
-
 
 ---
 
