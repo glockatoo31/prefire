@@ -1,0 +1,20 @@
+# --- runtime artefacts ---
+*.log
+*.txt
+*.json          # runtime job / state files
+!watchers.sample.json
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+
+# --- Virtual-env & tooling ---
+venv/
+.env            # personal secrets (Pushover tokens, etc.)
+
+# --- Playwright cache ---
+ms-playwright/
+
+# --- OS cruft ---
+.DS_Store
+Thumbs.db
