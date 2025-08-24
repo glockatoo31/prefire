@@ -145,8 +145,6 @@ For **Workday** and **Workday Intercept**, you need:
 
 If the URL is more complex, Prefire's **Auto Detect** can usually figure it out for you—just paste the full job board URL and hit Auto Detect.
 
-If you ever get stuck, check the page's URL or ask the person who runs the job board for help. Most public boards follow the same pattern.
-
 ### Workday vs. Workday Intercept
 | Mode | What it does | When to use |
 |------|--------------|-------------|
